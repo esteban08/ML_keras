@@ -1,0 +1,19 @@
+# Entornos Virtuales
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+
+# SO
+.DS_Store
+
+# Opcional: ignorar el modelo si es muy pesado para github y prefieres usar lfs o links externos
+# keras_model.h5

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyecto de Machine Learning que clasifica imágenes de Piedra, Papel o Tijera usando Keras y Streamlit.">
+    <title>Clasificador IA | Piedra, Papel, Tijera</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0e1117;
+            --surface-color: #1a1c24;
+            --primary-color: #ff4b4b;
+            --primary-hover: #ff2a2a;
+            --text-main: #ffffff;
+            --text-secondary: #a0aab2;
+            --border-color: #2e323f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav */
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(14, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #fff, #a0aab2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 75, 75, 0.1) 0%, rgba(14, 17, 23, 1) 70%);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        h1 span {
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 75, 75, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 75, 75, 0.4);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 75, 75, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            margin-top: 50px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 1s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0;}
+        .delay-2 { animation-delay: 0.4s; opacity: 0;}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Clasificador IA</div>
+        <a href="#app-link" class="cta-button" style="padding: 10px 20px; font-size: 0.9rem;">Probar App</a>
+    </nav>
+
+    <header>
+        <h1 class="animate">Inteligencia Artificial para <br><span>Piedra, Papel o Tijera</span></h1>
+        <p class="subtitle animate delay-1">Del entrenamiento a la producción. Descubre cómo un modelo de Deep Learning cobra vida en una aplicación web interactiva y en tiempo real.</p>
+        <div class="animate delay-2">
+            <!-- REEMPLAZAR ESTE ENLACE CUANDO ESTÉ DESPLEGADO EN STREAMLIT -->
+            <a href="#" id="app-link" class="cta-button">Ir a la Aplicación en Vivo</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">El Ciclo de Vida del Modelo</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📌 El Problema</h3>
+                <p>Entrenar un modelo es solo el primer paso. El verdadero desafío para un Ingeniero de Datos radica en cómo desplegar ese modelo para que usuarios sin conocimientos técnicos puedan utilizarlo en su día a día.</p>
+            </div>
+            <div class="card">
+                <h3>🎯 El Objetivo</h3>
+                <p>Articular un modelo pre-entrenado (.h5) dentro de una interfaz web 100% funcional. Buscamos cerrar la brecha entre la ciencia de datos en su estado puro y la experiencia del usuario final.</p>
+            </div>
+            <div class="card">
+                <h3>⚙️ Funcionalidad</h3>
+                <p>La aplicación desarrollada en Streamlit permite realizar inferencias en tiempo real procesando imágenes locales o utilizando la cámara web, emitiendo predicciones con su respectivo porcentaje de confianza.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: var(--surface-color); border-radius: 30px;">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">Acerca del Desarrollo</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">
+                Este proyecto fue estructurado aplicando prácticas de MLOps a nivel básico, asegurando que la transición desde el entorno de experimentación hasta el entorno productivo sea profesional y limpia.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <span style="background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 20px; font-weight: 600;">🐍 Python</span>
+                <span style="background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 20px; font-weight: 600;">🧠 TensorFlow/Keras</span>
+                <span style="background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 20px; font-weight: 600;">🎈 Streamlit</span>
+            </div>
+            <p style="margin-top: 40px; font-style: italic; color: var(--text-secondary);">
+                Desarrollado por: <strong style="color: #fff;">Ingeniero de Datos / Especialista en ML</strong>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Proyecto de Machine Learning. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll implementation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
